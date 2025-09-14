@@ -132,7 +132,3 @@ Se você tiver dúvidas, sugestões ou precisar de suporte, não hesite em abrir
 Este projeto está licenciado sob a [Licença MIT](https://opensource.org/licenses/MIT). Sinta-se à vontade para utilizá-lo e modificá-lo conforme suas necessidades.
 
 --- 
-
-**Desenvolvido com paixão por IA e automação.**
-
-
