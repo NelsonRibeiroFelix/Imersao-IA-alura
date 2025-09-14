@@ -1,141 +1,81 @@
-## 📄 Agente de Service Desk com IA
+# 🤖 Agente de Service Desk Inteligente com IA
 
-Este projeto demonstra a construção de um agente de inteligência artificial capaz de atuar como um Service Desk de políticas internas de uma empresa. Ele utiliza **LangChain**, **Google Gemini** e **LangGraph** para triar e responder a perguntas de forma automatizada.
+Bem-vindo ao repositório do Agente de Service Desk Inteligente! Este projeto inovador demonstra a aplicação de inteligência artificial para automatizar e otimizar o atendimento de Service Desk, focando especificamente na gestão de políticas internas de uma empresa. Utilizando as poderosas ferramentas **LangChain**, **Google Gemini** e **LangGraph**, este agente é capaz de triar, compreender e responder a uma vasta gama de perguntas de forma autônoma e eficiente.
 
-### ➡️ Como passar este projeto para o GitHub
+Em um ambiente corporativo dinâmico, a necessidade de acesso rápido e preciso a informações sobre políticas internas é crucial. Este agente foi projetado para aliviar a carga sobre as equipes de suporte, fornecendo respostas instantâneas e consistentes, 24 horas por dia, 7 dias por semana. Ele não apenas melhora a experiência do usuário final, mas também libera recursos valiosos da equipe de Service Desk para tarefas mais complexas e estratégicas.
 
-A maneira mais simples de transferir este projeto do Google Colab para o GitHub é através da própria interface do Colab.
+## ✨ Destaques do Projeto
 
-1.  No seu notebook do Colab, vá para a barra de menu e clique em **Arquivo**.
-2.  No menu suspenso, selecione **Salvar uma cópia no GitHub**.
-3.  Você será solicitado a autorizar o Colab a acessar sua conta do GitHub.
-4.  Após a autorização, escolha o repositório e a `branch` onde deseja salvar o notebook.
-5.  Adicione uma mensagem de `commit` e clique em **OK**.
+Este agente de IA é construído sobre uma arquitetura robusta e modular, incorporando as seguintes funcionalidades chave:
 
----
+- **Triagem Inteligente de Intenção:** Uma das capacidades mais críticas do agente é a sua habilidade de classificar a intenção da mensagem do usuário com alta precisão. As mensagens são categorizadas em três tipos principais: `AUTO_RESOLVER` (a pergunta pode ser respondida diretamente pela base de conhecimento), `PEDIR_INFO` (requer informações adicionais do usuário antes de prosseguir) ou `ABRIR_CHAMADO` (a questão é complexa e necessita da intervenção humana de um técnico de suporte).
 
-### ✨ Funcionalidades Principais
+- **Geração Aumentada por Recuperação (RAG) Avançada:** Para as perguntas classificadas como `AUTO_RESOLVER`, o agente emprega uma técnica sofisticada de Geração Aumentada por Recuperação. Ele busca proativamente informações relevantes em uma base de conhecimento composta por documentos PDF, extrai os trechos mais pertinentes e formula uma resposta clara e concisa. O diferencial aqui é a inclusão de citações diretas e contexto dos documentos originais, garantindo a transparência e a confiabilidade das informações fornecidas.
 
-- **Triagem de Intenção:** O agente classifica a mensagem do usuário em três categorias: `AUTO_RESOLVER`, `PEDIR_INFO` ou `ABRIR_CHAMADO`.
-- **Geração Aumentada por Recuperação (RAG):** Para perguntas que podem ser auto-resolvidas, o agente busca a resposta em uma base de conhecimento (documentos PDF) e fornece a informação com citações e contexto.
-- **Orquestração de Fluxo:** Utilizando o **LangGraph**, o agente navega por um fluxo de decisões, garantindo que cada pergunta receba a resposta ou ação apropriada.
+- **Orquestração de Fluxo Dinâmica com LangGraph:** O coração da inteligência do agente reside na sua capacidade de orquestrar um fluxo de decisões complexo e adaptativo. Utilizando o **LangGraph**, o agente navega por diferentes estados e ações com base na intenção do usuário e nas informações disponíveis. Isso garante que cada interação seja guiada de forma lógica, resultando na resposta ou encaminhamento mais apropriado para cada cenário, desde a resolução automática até a escalada para um chamado humano.
 
----
 
-### ⚙️ Pré-requisitos
-- **Google Colab:** O projeto foi desenvolvido e é melhor executado no Google Colab.
-- **Python:** Versão 3.8 ou superior.
-- **Google API Key:** Uma chave de API válida para acessar os modelos do Google Gemini. Você pode obtê-la em [Google AI Studio](https://aistudio.google.com/app/apikey).
 
----
 
-### 🚀 Passo a Passo para Execução
 
-#### 1. Configurar o Ambiente
+## 🛠️ Pré-requisitos Essenciais
 
-Primeiro, você precisa instalar todas as bibliotecas necessárias. No Google Colab, execute a célula a seguir:
+Para embarcar nesta jornada e colocar o seu Agente de Service Desk em funcionamento, você precisará dos seguintes componentes:
+
+- **Google Colab:** Este projeto foi meticulosamente desenvolvido e otimizado para o ambiente do Google Colab, garantindo uma experiência de execução fluida e sem complicações. Embora seja possível adaptá-lo para outros ambientes, o Colab é o ponto de partida recomendado para aproveitar ao máximo suas funcionalidades.
+
+- **Python 3.8+:** Certifique-se de ter uma versão do Python igual ou superior a 3.8 instalada. Esta versão garante a compatibilidade com todas as bibliotecas e dependências utilizadas no projeto.
+
+- **Google API Key:** A inteligência do nosso agente é alimentada pelos modelos de linguagem do Google Gemini. Para acessá-los, você precisará de uma chave de API válida. Você pode obtê-la de forma gratuita e rápida no [Google AI Studio](https://aistudio.google.com/app/apikey). Esta chave é fundamental para a comunicação do agente com os modelos de IA.
+
+
+
+
+## 🚀 Guia de Início Rápido: Colocando o Agente em Ação
+
+Siga estes passos detalhados para configurar e executar o seu Agente de Service Desk Inteligente no Google Colab:
+
+### 1. Configuração do Ambiente
+
+O primeiro passo é garantir que todas as bibliotecas necessárias estejam instaladas. No seu notebook do Google Colab, execute a seguinte célula de código. Este comando instalará de forma silenciosa e atualizará todas as dependências essenciais para o funcionamento do agente:
 
 ```bash
 pip install -q --upgrade langchain-google-genai langchain_community faiss-cpu langchain-text-splitters pymupdf langgraph
+```
 
-2. Configurar a Chave da API
-O projeto utiliza o userdata do Colab para gerenciar a chave da API de forma segura.
+### 2. Configuração Segura da Chave da API
 
-Clique no ícone de chave (🔑) no painel esquerdo do Colab.
+Para garantir a segurança da sua chave de API do Google, o projeto utiliza o recurso `userdata` do Colab. Siga as instruções abaixo para configurar sua chave:
 
-Adicione uma nova chave com o nome GOOGLE_API_KEY.
+1.  No painel esquerdo do Google Colab, localize e clique no ícone de chave (🔑).
+2.  Adicione uma nova chave secreta com o nome exato `GOOGLE_API_KEY`.
+3.  Cole sua chave de API do Google Gemini no campo de valor correspondente.
+4.  Após adicionar a chave, execute a célula Python a seguir no seu notebook para carregar a chave de forma segura:
 
-Cole sua chave da API do Google Gemini no campo de valor.
-
-Depois, execute o código para carregar a chave:
-
-Python
-
+```python
 from google.colab import userdata
 from langchain_google_genai import ChatGoogleGenerativeAI
 
 GOOGLE_API_KEY = userdata.get('GOOGLE_API_KEY')
+```
 
-Markdown
+### 3. Carregamento dos Documentos de Política
 
-## 📄 Agente de Service Desk com IA
+O agente depende de uma base de conhecimento para responder às perguntas. Para isso, você precisará carregar os documentos PDF que contêm as políticas internas da sua empresa. Siga estes passos:
 
-Este projeto demonstra a construção de um agente de inteligência artificial capaz de atuar como um Service Desk de políticas internas de uma empresa. Ele utiliza **LangChain**, **Google Gemini** e **LangGraph** para triar e responder a perguntas de forma automatizada.
+1.  No painel lateral esquerdo do Colab, clique no ícone de pasta (📂) para abrir o explorador de arquivos.
+2.  Clique no ícone de upload (⬆️) e faça o upload dos seus arquivos PDF para a pasta `/content/`.
+    *   **Exemplos de arquivos:**
+        *   `Política de Uso de E-mail e Segurança da Informação.pdf`
+        *   `Política de Reembolsos (Viagens e Despesas).pdf`
+        *   `Políticas de Home Office.pdf`
+3.  Após o upload, execute as células subsequentes no notebook que são responsáveis por carregar, dividir e criar o banco de dados vetorial com o conteúdo desses documentos. Este processo é crucial para a funcionalidade RAG do agente.
 
-### ➡️ Como passar este projeto para o GitHub
+### 4. Execução do Agente
 
-A maneira mais simples de transferir este projeto do Google Colab para o GitHub é através da própria interface do Colab.
+Com todas as dependências instaladas e os documentos carregados, você está pronto para testar o agente. A função `grafo.invoke()` é o ponto de entrada principal que orquestra todo o fluxo de decisão e resposta para cada pergunta. Você pode utilizar os exemplos de mensagens já incluídos no notebook para ver o agente em ação:
 
-1.  No seu notebook do Colab, vá para a barra de menu e clique em **Arquivo**.
-2.  No menu suspenso, selecione **Salvar uma cópia no GitHub**.
-3.  Você será solicitado a autorizar o Colab a acessar sua conta do GitHub.
-4.  Após a autorização, escolha o repositório e a `branch` onde deseja salvar o notebook.
-5.  Adicione uma mensagem de `commit` e clique em **OK**.
-
----
-
-### ✨ Funcionalidades Principais
-
-- **Triagem de Intenção:** O agente classifica a mensagem do usuário em três categorias: `AUTO_RESOLVER`, `PEDIR_INFO` ou `ABRIR_CHAMADO`.
-- **Geração Aumentada por Recuperação (RAG):** Para perguntas que podem ser auto-resolvidas, o agente busca a resposta em uma base de conhecimento (documentos PDF) e fornece a informação com citações e contexto.
-- **Orquestração de Fluxo:** Utilizando o **LangGraph**, o agente navega por um fluxo de decisões, garantindo que cada pergunta receba a resposta ou ação apropriada.
-
----
-
-### ⚙️ Pré-requisitos
-- **Google Colab:** O projeto foi desenvolvido e é melhor executado no Google Colab.
-- **Python:** Versão 3.8 ou superior.
-- **Google API Key:** Uma chave de API válida para acessar os modelos do Google Gemini. Você pode obtê-la em [Google AI Studio](https://aistudio.google.com/app/apikey).
-
----
-
-### 🚀 Passo a Passo para Execução
-
-#### 1. Configurar o Ambiente
-
-Primeiro, você precisa instalar todas as bibliotecas necessárias. No Google Colab, execute a célula a seguir:
-
-```bash
-pip install -q --upgrade langchain-google-genai langchain_community faiss-cpu langchain-text-splitters pymupdf langgraph
-2. Configurar a Chave da API
-O projeto utiliza o userdata do Colab para gerenciar a chave da API de forma segura.
-
-Clique no ícone de chave (🔑) no painel esquerdo do Colab.
-
-Adicione uma nova chave com o nome GOOGLE_API_KEY.
-
-Cole sua chave da API do Google Gemini no campo de valor.
-
-Depois, execute o código para carregar a chave:
-
-Python
-
-from google.colab import userdata
-from langchain_google_genai import ChatGoogleGenerativeAI
-
-GOOGLE_API_KEY = userdata.get('GOOGLE_API_KEY')
-3. Carregar os Documentos de Política
-O agente precisa dos documentos de política para responder às perguntas.
-
-No painel lateral do Colab, clique no ícone de pasta (📂).
-
-Clique no ícone de upload (⬆️) e envie os seguintes arquivos PDF para a pasta /content/:
-
-Política de Uso de E-mail e Segurança da Informação.pdf
-
-Política de Reembolsos (Viagens e Despesas).pdf
-
-Políticas de Home Office.pdf
-
-Em seguida, execute as células do notebook para carregar, dividir e criar o banco de dados vetorial com esses documentos.
-
-4. Executar o Agente
-Com todas as dependências instaladas e os documentos carregados, você pode rodar o código para testar o agente. O grafo.invoke() é a função principal que executa o fluxo completo do agente para cada pergunta.
-
-Você pode testar com as mensagens de exemplo já incluídas no notebook:
-
-Python
-
+```python
 testes = ["Posso reembolsar a internet?",
           "Quero mais 5 dias de trabalho remoto. Como faço?",
           "Posso reembolsar cursos ou treinamentos da Alura?",
@@ -158,4 +98,41 @@ for msg_test in testes:
             print(f"   Trecho: {citacao['trecho']}")
 
     print("----------------------------------------------------------")
+```
+
 Este resumo consolida as funcionalidades, a configuração e a execução do projeto em um único texto para sua referência.
+
+
+
+
+## ➡️ Como Levar Este Projeto para o GitHub
+
+Para compartilhar este projeto incrível com a comunidade ou mantê-lo versionado no GitHub, a maneira mais simples, especialmente se você estiver trabalhando no Google Colab, é através da própria interface do Colab. Siga estes passos:
+
+1.  No seu notebook do Colab, navegue até a barra de menu superior.
+2.  Clique em **Arquivo**.
+3.  No menu suspenso, selecione a opção **Salvar uma cópia no GitHub**.
+4.  O Colab solicitará que você autorize o acesso à sua conta do GitHub, caso ainda não o tenha feito. Conceda as permissões necessárias.
+5.  Após a autorização, você poderá escolher o repositório e a `branch` específicos onde deseja salvar o seu notebook.
+6.  Adicione uma mensagem de `commit` descritiva para registrar suas alterações e clique em **OK**.
+
+Pronto! Seu projeto estará no GitHub, pronto para ser compartilhado e aprimorado.
+
+
+
+
+## 🤝 Contribuição e Suporte
+
+Este projeto é um convite à inovação! Sinta-se à vontade para explorar, adaptar e aprimorar este agente de Service Desk. Contribuições são sempre bem-vindas, seja através de sugestões, relatórios de bugs ou pull requests. Juntos, podemos construir soluções de IA cada vez mais inteligentes e eficientes.
+
+Se você tiver dúvidas, sugestões ou precisar de suporte, não hesite em abrir uma *issue* neste repositório. Sua colaboração é fundamental para o crescimento e a evolução deste projeto!
+
+## 📄 Licença
+
+Este projeto está licenciado sob a [Licença MIT](https://opensource.org/licenses/MIT). Sinta-se à vontade para utilizá-lo e modificá-lo conforme suas necessidades.
+
+--- 
+
+**Desenvolvido com paixão por IA e automação.**
+
+
